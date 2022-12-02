@@ -1,0 +1,67 @@
+{
+    "resourceType": "Composition",
+    "id": "11111113",
+    "meta": {
+      "versionId": "35",
+      "lastUpdated": "2022-06-09T10:15:39.127+00:00",
+      "source": "#50da05d62fb8a208"
+    },
+    "identifier": {
+      "use": "official",
+      "value": "GT2_TEST_IPC"
+    },
+    "status": "final",
+    "type": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "1156600005",
+          "display": "Device setting parameter"
+        }
+      ]
+    },
+    "date": "2022-07-28",
+    "title": "OpenSRP PSI - Workforce APP",
+    "confidentiality": "L",
+    "section": [ {
+          "title": "Client List",
+          "code": {
+            "coding": [ {
+              "system": "http://loinc.org",
+              "code": "29299-5",
+              "display": "Reason for visit Narrative"
+            } ]
+          },
+          "entry": [ {
+            "reference": "Observation/49903"
+          } ]
+        }, {
+          "title": "Medications on Discharge",
+          "code": {
+            "coding": [ {
+              "system": "http://loinc.org",
+              "code": "10183-2",
+              "display": "Hospital discharge medications Narrative"
+            } ]
+          },
+          "mode": "working",
+          "entry": [ {
+            "reference": "MedicationRequest/30097"
+          }, {
+            "reference": "MedicationStatement/30158"
+          } ]
+        }, {
+          "title": "Known allergies",
+          "code": {
+            "coding": [ {
+              "system": "http://loinc.org",
+              "code": "48765-2",
+              "display": "Allergies and adverse reactions Document"
+            } ]
+          },
+          "entry": [ {
+            "reference": "AllergyIntolerance/39900"
+          } ]
+        } ]
+    
+  }

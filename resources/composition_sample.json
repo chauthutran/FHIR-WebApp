@@ -1,0 +1,48 @@
+{
+    "resourceType": "Composition",
+    "id": "GT2_TEST_IPC",
+    "meta": {
+        "versionId": "1.0",
+        "lastUpdated": "2022-12-02T10:27:219+00:00"
+    },
+    "status": "preliminary",
+    "subject": {
+        "reference": "ResearchStudy/38364"
+    },
+    "date": "2022-12-02T10:27:219+00:00",
+    "title": "GT2_TEST_IPC DEMO",
+    "confidentiality": "L",
+    "section": [{
+        "title": "=== Patient data section =========================================",
+        "code": {
+            "coding": [{
+                "system": "http://loinc.org",
+                "code": "29299-5",
+                "display": "Reason for visit Narrative"
+            }]
+        },
+        "entry": [{
+            "reference": "#Patient-1"
+        }]
+    }, {
+        "title": "=== Service data section =========================================",
+        "code": {
+            "coding": [{
+                "system": "http://loinc.org",
+                "code": "10183-2",
+                "display": "Hospital discharge medications Narrative"
+            }]
+        },
+        "entry": [{
+            "reference": "#ServiceRequest-1"
+        }, {
+            "reference": "#Practitioner-2"
+        }, {
+            "reference": "#Practitioner-1"
+        }, {
+            "reference": "#Organization-1"
+        }, {
+            "reference": "#Procedure-1"
+        }]
+    }]
+}
