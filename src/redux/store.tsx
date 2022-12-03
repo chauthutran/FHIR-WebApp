@@ -1,9 +1,9 @@
 
 
 import { configureStore, getDefaultMiddleware  } from '@reduxjs/toolkit';
-import StatusReducer from "./status/Status.reducer";
-import AppConfigurationReducer from "./configuration/AppConfiguration.reducer";
-import ResourceTypeReducer from "./resourceTypes/ResourceType.reducer";
+import StatusReducer from "./reducers/Status.reducer";
+import AppConfigurationReducer from "./reducers/AppConfiguration.reducer";
+import ResourceTypeReducer from "./reducers/ResourceType.reducer";
 
 
 // const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, thunk)));

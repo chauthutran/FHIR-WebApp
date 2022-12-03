@@ -1,6 +1,6 @@
 
-export * from "./configuration/AppConfiguration.action";
-export * from "./status/Status.action";
-export * from "./resourceTypes/ResourceTypes.action";
+export * from "./actions/AppConfiguration.action";
+export * from "./actions/Status.action";
+export * from "./actions/ResourceTypes.action";
 
 
