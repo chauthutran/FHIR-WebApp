@@ -1,21 +1,18 @@
 import React from 'react';
 import { Provider } from "react-redux";
 import store from "./redux/store";
-// import { BrowserRouter as Router, HashRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, HashRouter, Route } from "react-router-dom";
 
 import './App.css';
-// import PatientComponent from './components/Patient.component';
-// import SearchAppConfigComponent from './components/SearchAppConfig.component';
-import App from './App';
+import PatientComponent from './components/Patient.component';
 
-function AppWrapper() {
+function App() {
 
 
-  // const store = configureStore();
   return (
     <Provider store={store}>
-      {/* <PatientComponent /> */}
-        <App />
+      <PatientComponent />
+
     </Provider>
     // <Provider store={store}>
     //       {/* <HashRouter> */}
@@ -30,4 +27,4 @@ function AppWrapper() {
   );
 }
 
-export default AppWrapper;
+export default App;

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
+import StatusReducer from "./reducers/Status.reducer";
 import AppConfigurationReducer from "./reducers/AppConfiguration.reducer";
 import ResourceTypeReducer from "./reducers/ResourceType.reducer";
-import StatusReducer from "./reducers/Status.reducer";
 
 const rootReducer = combineReducers({
   statusData: StatusReducer,
@@ -10,5 +10,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-export type AppState = ReturnType<typeof rootReducer>;

@@ -2,9 +2,9 @@ import axios from "axios";
 import * as Utils from "../utils";
 
 
-export const getResourceTypeList = async( resourceType: string, searchBy: string, searchValue: string) => {
+export const getResourceTypeList = async( resourceType: string) => {
 
-    const queryUrl: string = Utils.getResourceTypeList(resourceType, searchBy, searchValue);
+    const queryUrl: string = Utils.getResourceTypeList(resourceType);
     // const responseData: any = await axios.get(queryUrl);
 
     let responseData;
