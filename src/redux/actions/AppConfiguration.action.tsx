@@ -3,10 +3,11 @@ import { ThunkAction } from "redux-thunk";
 import * as Types from "../../varTypes"
 import * as Constant from "../../constants";
 import * as api from "../../api";
+import { AppState } from '../../redux/store';
 
 type AppThunk = ThunkAction<
   void,
-  Types.AppConfigType,
+  AppState,
   null,
   Action<string>
 >;

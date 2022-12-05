@@ -1,59 +1,86 @@
-import React, { FunctionComponent, useEffect } from 'react'; // importing FunctionComponent
+import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-// import ImageIcon from '@mui/icons-material/Image';
-import { Link } from "react-router-dom";
-
 import { fetchResourceTypeList } from '../redux';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../varTypes";
-import * as Utils from "../utils";
 import * as Constant from "../constants";
-
+import { AppState } from '../redux/store';
+import { Dispatch } from "redux";
 
 type PatientListType = {
 	statusData: ReduxVarType.StatusDataType,
 	resourceTypeList: any,
+	appConfigData: ReduxVarType.AppConfigType,
 	fetchResourceTypeList: any
 };
 
-const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, fetchResourceTypeList}) => {
+const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList}) => {
 
-	useEffect(() => {
-        if( !Utils.INIT_APP )
-		{
-            fetchResourceTypeList("Patient");
-        }
-	}, [])
     
-    console.log("PatientList");
-    console.log(statusData);
-    console.log(resourceTypeList);
+	const [refresh, setRefresh] = useState(1);
+	
+
+    useEffect(() => {
+        console.log(" === appConfigData.loaded : useEffect ");
+        if( appConfigData.loaded && resourceTypeList.Patient === undefined )
+		{
+            fetchResourceTypeList("Patient", Constant.QUERY_ORGUNIT_FILTER_KEY, Constant.QUERY_ORGUNIT_FILTER_ID);
+        }
+	}, [appConfigData.loaded]);
+
+    // useEffect(() => {
+    //     console.log("=== PatientList statusData useEffect ");
+    //     console.log(statusData);
+    //     // console.log(resourceTypeList);
+    //     // console.log("============================= ");
+    //     setRefresh(refresh + 1);
+        
+        
+        
+    //     // if( resourceTypeList.Patient !== undefined )
+	// 	// {
+    //     //     console.log("===== PatientList : appConfigData.loaded " + appConfigData.loaded + " --- resourceTypeList.Patient + " + resourceTypeList.Patient );
+    //     // }
+	// }, [statusData]);
+
+   
+
+
+	// useEffect(() => {
+    //     if( appConfigData.loaded && resourceTypeList.Patient === undefined )
+	// 	{
+    //         fetchResourceTypeList("Patient", Constant.QUERY_ORGUNIT_FILTER_KEY, Constant.QUERY_ORGUNIT_FILTER_ID);
+    //     }
+	// }, [])
+    
+    // console.log("=====PatientList Component");
+    // console.log(statusData);
+    // // console.log(resourceTypeList);
+    // // console.log("==========================================");
+
+
 	return ( resourceTypeList.Patient === undefined ) 
-        ? <div>Loading</div> 
+        ? <div>Loading {refresh}</div> 
     
     : (
 		<div>
-			<div>Client List</div>
+			<div>Client List {refresh}</div>
 			<div>
-                <List key="Patient">
+                {resourceTypeList.Patient && <List key="Patient">
                    
                     {resourceTypeList.Patient.map((data: any, index: any) => {
-
                         let name = data.resource.name[0];
-                        let fullName = name.given[0] + " " + name.family;
+                        let fullName = ( name.given ) ? name.given[0] : "";
+                        fullName += " " + name.family;
                         let birthDate = data.resource.birthDate;
                         let gender = data.resource.gender;
                         return (
-                            // component={Link} to={"/patient/" + data.resource.id}
                             <ListItem key={data.resource.id} >
                                 <ListItemAvatar>
-                                {/* <Avatar>
-                                    <ImageIcon />
-                                </Avatar> */}
+                               
                                 </ListItemAvatar>
                                 <ListItemText primary={fullName} secondary={birthDate + ", " + gender}/>
                             </ListItem>
@@ -61,25 +88,24 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
                         }
                     )}
 
-                </List>
+                </List>}
             </div>
-
-    
 		</div>
 	);
 
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
     return {
+        statusData: state.statusData,
 		resourceTypeList: state.resourceTypeList,
-        statusData: state.statusData
+		appConfigData: state.appConfigData
     };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		fetchResourceTypeList: (resourceType: string) => dispatch(fetchResourceTypeList(resourceType))
+		fetchResourceTypeList: (resourceType: string, searchBy: string, searchValue: string) => dispatch(fetchResourceTypeList(resourceType, searchBy, searchValue))
 	};
 };
 

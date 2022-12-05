@@ -1,54 +1,79 @@
-import React, { FunctionComponent } from 'react'; // importing FunctionComponent
+import React, { FunctionComponent, useEffect } from 'react'; // importing FunctionComponent
 
-
+import * as Constant from "../constants";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { fetchAppConfiguration } from '../redux';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../varTypes";
+import { AppState } from '../redux/store';
+import PatientComponent from './Patient.component';
 
 type SearchAppConfigType = {
 	statusData: ReduxVarType.StatusDataType,
 	appConfigData: ReduxVarType.AppConfigType,
+	resourceTypeList: any,
 	fetchAppConfiguration: any
 };
 
-const SearchAppConfig: FunctionComponent<SearchAppConfigType> = ({statusData, appConfigData, fetchAppConfiguration}) => {
+const SearchAppConfig: FunctionComponent<SearchAppConfigType> = ({statusData, appConfigData, resourceTypeList, fetchAppConfiguration}) => {
 
-	let appId: string = "";
+	// useEffect(() => {
+	// 	if( statusData.status == Constant.FETCH_RESOURCE_TYPE_SUCCESS )
+	// 	{
+	// 		console.log("=== statusData useEffect ");
+	// 		console.log(statusData);
+	// 		// setRefresh(refresh + 1);
+	// 	}
+       
+    //     // console.log(resourceTypeList);
+    //     // console.log("============================= ");
+    //     // 
+        
+        
+        
+    //     // if( resourceTypeList.Patient !== undefined )
+	// 	// {
+    //     //     console.log("===== PatientList : appConfigData.loaded " + appConfigData.loaded + " --- resourceTypeList.Patient + " + resourceTypeList.Patient );
+    //     // }
+	// }, [statusData]);
+
+	let userCode: string = "";
 	const handleOnChange = (event: any) => {
-		appId = event.target.value;
-
+		userCode = event.target.value;
 	};
 
 	const handleOnClick = (event: any) => {
-		
-		alert( appId );
-		fetchAppConfiguration(appId);
+		fetchAppConfiguration(userCode);
 	};
 
 	return (
 		<div>
-			<div>Application ID</div>
+			<div>User code</div>
 			<div><TextField onChange={(event: any) => handleOnChange(event)} /></div>
 
-			<Button variant="contained" onClick={(event: any) => handleOnClick(event)}>Load Configurations</Button>
+			<div>PIN</div>
+			<div><TextField /></div>
+
+			<Button variant="contained" onClick={(event: any) => handleOnClick(event)}>Log in</Button>
     
+
 		</div>
 	);
 
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
     return {
 		appConfigData: state.appConfigData,
-        statusData: state.statusData
+        statusData: state.statusData,
+		resourceTypeList: state.resourceTypeList,
     };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		fetchAppConfiguration: (appId: string) => dispatch(fetchAppConfiguration(appId))
+		fetchAppConfiguration: (userCode: string) => dispatch(fetchAppConfiguration(userCode))
 	};
 };
 

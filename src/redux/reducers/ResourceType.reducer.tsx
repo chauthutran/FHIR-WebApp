@@ -9,7 +9,6 @@ const initialState: any = { };
 const ResourceTypeReducer = (state = initialState, action: ReduxVarType.ReduxActionType) => {
 	let newState = Utils.cloneJson( state );
 
-	console.log(action);
 	if( action.type === Constant.FETCH_RESOURCE_TYPE_SUCCESS ) 
 	{
 		const type = action.payload.type;
@@ -19,10 +18,10 @@ const ResourceTypeReducer = (state = initialState, action: ReduxVarType.ReduxAct
 		
 		return newState;
 	}
-	else
-	{
+	// else
+	// {
 		return state;
-	}
+	// }
 }
 
 export default ResourceTypeReducer;
