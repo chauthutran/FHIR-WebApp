@@ -14,27 +14,11 @@ type AppType = {
 
 const App: FunctionComponent<AppType> = ({statusData, appConfigData, resourceTypeList}) => {
 
-	
-	// const [refresh, setRefresh] = useState(1);
-
 	useEffect(() => {
-        console.log("=== App statusData useEffect ");
-        console.log(statusData);
-        // console.log(resourceTypeList);
-        // console.log("============================= ");
-        // setRefresh(refresh + 1);
         
-        
-        
-        // if( resourceTypeList.Patient !== undefined )
-		// {
-        //     console.log("===== PatientList : appConfigData.loaded " + appConfigData.loaded + " --- resourceTypeList.Patient + " + resourceTypeList.Patient );
-        // }
 	}, [statusData]);
 
     
-			/* { resourceTypeList.Patient && <PatientListComponent />} */
-			console.log(resourceTypeList);
     return (
 		<>
         	{!appConfigData.loaded && <SearchAppConfigComponent />}

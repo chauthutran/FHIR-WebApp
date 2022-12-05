@@ -4,13 +4,6 @@ import * as Constant from "../../constants";
 import * as api from "../../api";
 import { AppDispatch, AppState } from '../../redux/store';
 
-type AppThunk = ThunkAction<
-  void,
-  AppState,
-  null,
-  Action<string>
->;
-
 export function fetchAppConfiguration(appId: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {
    

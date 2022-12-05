@@ -1,15 +1,6 @@
-import { Action } from "redux";
-import { ThunkAction } from "redux-thunk";
 import * as Constant from "../../constants";
 import * as api from "../../api";
-import { AppDispatch, AppState } from '../../redux/store';
-
-type AppThunk = ThunkAction<
-  void,
-  AppState,
-  null,
-  Action<string>
->;
+import { AppDispatch } from '../../redux/store';
  
 export function fetchResourceTypeList(resourceType: string, searchBy: string, searchValue: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {

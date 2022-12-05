@@ -18,11 +18,7 @@ type PatientListType = {
 };
 
 const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList}) => {
-
-    
-	const [refresh, setRefresh] = useState(1);
 	
-
     useEffect(() => {
         console.log(" === appConfigData.loaded : useEffect ");
         if( appConfigData.loaded && resourceTypeList.Patient === undefined )
@@ -31,43 +27,12 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
         }
 	}, [appConfigData.loaded]);
 
-    // useEffect(() => {
-    //     console.log("=== PatientList statusData useEffect ");
-    //     console.log(statusData);
-    //     // console.log(resourceTypeList);
-    //     // console.log("============================= ");
-    //     setRefresh(refresh + 1);
-        
-        
-        
-    //     // if( resourceTypeList.Patient !== undefined )
-	// 	// {
-    //     //     console.log("===== PatientList : appConfigData.loaded " + appConfigData.loaded + " --- resourceTypeList.Patient + " + resourceTypeList.Patient );
-    //     // }
-	// }, [statusData]);
-
-   
-
-
-	// useEffect(() => {
-    //     if( appConfigData.loaded && resourceTypeList.Patient === undefined )
-	// 	{
-    //         fetchResourceTypeList("Patient", Constant.QUERY_ORGUNIT_FILTER_KEY, Constant.QUERY_ORGUNIT_FILTER_ID);
-    //     }
-	// }, [])
-    
-    // console.log("=====PatientList Component");
-    // console.log(statusData);
-    // // console.log(resourceTypeList);
-    // // console.log("==========================================");
-
-
 	return ( resourceTypeList.Patient === undefined ) 
-        ? <div>Loading {refresh}</div> 
+        ? <div>Loading client list ...</div> 
     
     : (
 		<div>
-			<div>Client List {refresh}</div>
+			<div>Client List</div>
 			<div>
                 {resourceTypeList.Patient && <List key="Patient">
                    

@@ -18,26 +18,6 @@ type SearchAppConfigType = {
 
 const SearchAppConfig: FunctionComponent<SearchAppConfigType> = ({statusData, appConfigData, resourceTypeList, fetchAppConfiguration}) => {
 
-	// useEffect(() => {
-	// 	if( statusData.status == Constant.FETCH_RESOURCE_TYPE_SUCCESS )
-	// 	{
-	// 		console.log("=== statusData useEffect ");
-	// 		console.log(statusData);
-	// 		// setRefresh(refresh + 1);
-	// 	}
-       
-    //     // console.log(resourceTypeList);
-    //     // console.log("============================= ");
-    //     // 
-        
-        
-        
-    //     // if( resourceTypeList.Patient !== undefined )
-	// 	// {
-    //     //     console.log("===== PatientList : appConfigData.loaded " + appConfigData.loaded + " --- resourceTypeList.Patient + " + resourceTypeList.Patient );
-    //     // }
-	// }, [statusData]);
-
 	let userCode: string = "";
 	const handleOnChange = (event: any) => {
 		userCode = event.target.value;
@@ -56,12 +36,11 @@ const SearchAppConfig: FunctionComponent<SearchAppConfigType> = ({statusData, ap
 			<div><TextField /></div>
 
 			<Button variant="contained" onClick={(event: any) => handleOnClick(event)}>Log in</Button>
-    
 
 		</div>
 	);
-
 }
+
 
 const mapStateToProps = (state: AppState) => {
     return {
