@@ -1,7 +1,7 @@
 
 import * as Constant from '../../constants';
 import * as Utils from "../../utils";
-import * as ReduxVarType from "../../varTypes";
+import * as ReduxVarType from "../../types";
 
 import { AppState } from '../store';
 

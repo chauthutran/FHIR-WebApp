@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { fetchAppConfiguration } from '../redux';
 import { connect } from "react-redux";
-import * as ReduxVarType from "../varTypes";
+import * as ReduxVarType from "../types";
 import { AppState } from '../redux/store';
 import PatientComponent from './Patient.component';
 

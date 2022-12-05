@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
 
 import { connect } from "react-redux";
-import * as ReduxVarType from "./varTypes";
+import * as ReduxVarType from "./types";
 import PatientListComponent from './components/Patient.component';
 import SearchAppConfigComponent from './components/SearchAppConfig.component';
 import { AppState } from './redux/store';

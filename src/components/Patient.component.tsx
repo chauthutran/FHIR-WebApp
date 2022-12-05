@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import { fetchResourceTypeList } from '../redux';
 import { connect } from "react-redux";
-import * as ReduxVarType from "../varTypes";
+import * as ReduxVarType from "../types";
 import * as Constant from "../constants";
 import { AppState } from '../redux/store';
 import { Dispatch } from "redux";
