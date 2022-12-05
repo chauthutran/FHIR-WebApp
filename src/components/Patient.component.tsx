@@ -14,7 +14,7 @@ type PatientListType = {
 	statusData: ReduxVarType.StatusDataType,
 	resourceTypeList: any,
 	appConfigData: ReduxVarType.AppConfigType,
-	fetchResourceTypeList: any
+	fetchResourceTypeList: typeof fetchResourceTypeList
 };
 
 const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList}) => {
