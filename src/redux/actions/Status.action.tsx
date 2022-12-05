@@ -1,5 +1,6 @@
 
 import * as Constant from '../../constants';
+import { AppState } from '../../redux/store';
 
 export const resetMessageStatus = () => {
 	

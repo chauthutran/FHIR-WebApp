@@ -4,7 +4,8 @@ import * as ReduxVarType from "../../varTypes";
 
 
 const initialState: ReduxVarType.AppConfigType = {
-	"appConfig": {}
+	"appConfig": {},
+	"loaded": false
 }
 
 
@@ -13,11 +14,15 @@ const AppConfigurationReducer = (state = initialState, action: ReduxVarType.Redu
 
 	if( action.type === Constant.FETCH_APP_CONFIG_SUCCESS ) 
 	{
-		newState.appConfig = action.payload.entry[0].resource;
+		// newState.appConfig = action.payload.entry[0].resource;
+		newState.appConfig = {};
+		newState.loaded = true;
 		return newState;
 	}
-
-	return state;
+	else
+	{
+		return state;
+	}
 	
 }
 

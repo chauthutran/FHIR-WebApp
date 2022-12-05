@@ -3,6 +3,7 @@ import * as Constant from '../../constants';
 import * as Utils from "../../utils";
 import * as ReduxVarType from "../../varTypes";
 
+import { AppState } from '../store';
 
 const initialState: ReduxVarType.StatusDataType = {
 	status: "",
@@ -11,10 +12,25 @@ const initialState: ReduxVarType.StatusDataType = {
 }
 
 
-const StatusReducer = (state = initialState, action: ReduxVarType.ReduxActionType) => {
-    let newState = Utils.cloneJson( state );
+const StatusReducer = (state = initialState, action: ReduxVarType.ReduxActionType):ReduxVarType.StatusDataType => {
+    
+	let newState = Utils.cloneJson( state );
+	if( action.type === Constant.FETCH_RESOURCE_TYPE_SUCCESS )
+	{
+		newState.status = action.type;
+		newState.type = "info";
+		newState.message = "Data is loaded successfully !";
 
-    return newState;
+		console.log( "=== StatusReducer : " );
+		console.log(  newState  );
+		console.log( "======================================" );
+
+		return newState;
+	}
+	else
+	{
+		return state;
+	}
 }
 
 

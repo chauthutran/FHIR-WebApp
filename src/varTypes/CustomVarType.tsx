@@ -1,6 +1,6 @@
 
 interface ReduxActionType { type?: string, payload?: any };
-interface AppConfigType { appConfig?: object };
+interface AppConfigType { appConfig?: object, loaded: false };
 interface StatusDataType { status: string, type: string, message: string };
 
 
