@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import * as ReduxVarType from "../types";
 import * as Constant from "../constants";
 import { AppState } from '../redux/store';
-import { Dispatch } from "redux";
+import * as Utils from "../utils";
 
 type PatientListType = {
 	statusData: ReduxVarType.StatusDataType,
@@ -47,18 +47,13 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
                 {resourceTypeList.Patient && <List key="Patient">
                    
                     {resourceTypeList.Patient.map((data: any, index: any) => {
-                        const id = data.resource.id;
-                        let name = data.resource.name[0];
-                        let fullName = ( name.given ) ? name.given[0] : "";
-                        fullName += " " + name.family;
-                        let birthDate = data.resource.birthDate;
-                        let gender = data.resource.gender;
+                        let details = Utils.getPatientItemInfo(data.resource);
                         return (
-                            <ListItem key={id} >
+                            <ListItem key={details.id} >
                                 <ListItemAvatar>
                                
                                 </ListItemAvatar>
-                                <ListItemText primary={fullName} secondary={birthDate + ", " + gender} onClick={(event: any) => handleListItemClick(event, id) } />
+                                <ListItemText primary={details.fullName} secondary={details.birthDate + ", " + details.gender} onClick={(event: any) => handleListItemClick(event, details.id) } />
                             </ListItem>
                             );
                         }

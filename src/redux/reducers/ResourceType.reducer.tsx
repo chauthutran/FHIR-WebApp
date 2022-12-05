@@ -21,13 +21,16 @@ const ResourceTypeReducer = (state = initialState, action: ReduxVarType.ReduxAct
 	}
 	if( action.type === Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS ) 
 	{
-		const type = action.payload.type;
+		const type = action.payload.details.type;
 		if( newState[type] == undefined )
 		{
 			newState[type] = [];
 		}
 
-		newState[type].selected = action.payload.responseData.data;
+		newState[type].selected = { 
+			details: action.payload.details.responseData.data, 
+			services:action.payload.services.responseData.data.entry 
+		} ;
 
 		return newState;
 	}

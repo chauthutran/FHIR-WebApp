@@ -38,11 +38,13 @@ export function fetchResourceTypeDetails(resourceType: string, id: string): (dis
 
         try
         { 
-            const responseData: any = await api.getResourceTypeDetails( resourceType, id );
-            const status: string = ( responseData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE;
+            const responseDetailsData: any = await api.getResourceTypeDetails( resourceType, id );
+            const responseServiceRequests: any = await api.getResourceTypeList("ServiceRequest", "patient", id);
+
+            // const status: string = ( responseDetailsData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE;
             dispatch({
-                type: status,
-                payload: responseData
+                type: Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS,
+                payload: { details: responseDetailsData, services: responseServiceRequests }
             })
         }
         catch(e)
