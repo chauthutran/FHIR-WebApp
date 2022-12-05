@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { fetchResourceTypeList } from '../redux';
+import { fetchResourceTypeList, fetchResourceTypeDetails } from '../redux';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../types";
 import * as Constant from "../constants";
@@ -14,10 +14,11 @@ type PatientListType = {
 	statusData: ReduxVarType.StatusDataType,
 	resourceTypeList: any,
 	appConfigData: ReduxVarType.AppConfigType,
-	fetchResourceTypeList: typeof fetchResourceTypeList
+	fetchResourceTypeList: typeof fetchResourceTypeList,
+    fetchResourceTypeDetails: typeof fetchResourceTypeDetails,
 };
 
-const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList}) => {
+const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList, fetchResourceTypeDetails}) => {
 	
     useEffect(() => {
         console.log(" === appConfigData.loaded : useEffect ");
@@ -26,6 +27,15 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
             fetchResourceTypeList("Patient", Constant.QUERY_ORGUNIT_FILTER_KEY, Constant.QUERY_ORGUNIT_FILTER_ID);
         }
 	}, [appConfigData.loaded]);
+
+    
+    const handleListItemClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        id: string,
+    ) => {
+        fetchResourceTypeDetails("Patient", id );
+    };
+
 
 	return ( resourceTypeList.Patient === undefined ) 
         ? <div>Loading client list ...</div> 
@@ -37,17 +47,18 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
                 {resourceTypeList.Patient && <List key="Patient">
                    
                     {resourceTypeList.Patient.map((data: any, index: any) => {
+                        const id = data.resource.id;
                         let name = data.resource.name[0];
                         let fullName = ( name.given ) ? name.given[0] : "";
                         fullName += " " + name.family;
                         let birthDate = data.resource.birthDate;
                         let gender = data.resource.gender;
                         return (
-                            <ListItem key={data.resource.id} >
+                            <ListItem key={id} >
                                 <ListItemAvatar>
                                
                                 </ListItemAvatar>
-                                <ListItemText primary={fullName} secondary={birthDate + ", " + gender}/>
+                                <ListItemText primary={fullName} secondary={birthDate + ", " + gender} onClick={(event: any) => handleListItemClick(event, id) } />
                             </ListItem>
                             );
                         }
@@ -70,7 +81,8 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		fetchResourceTypeList: (resourceType: string, searchBy: string, searchValue: string) => dispatch(fetchResourceTypeList(resourceType, searchBy, searchValue))
+		fetchResourceTypeList: (resourceType: string, searchBy: string, searchValue: string) => dispatch(fetchResourceTypeList(resourceType, searchBy, searchValue)),
+        fetchResourceTypeDetails: (resourceType: string, id: string) => dispatch(fetchResourceTypeDetails(resourceType, id))
 	};
 };
 

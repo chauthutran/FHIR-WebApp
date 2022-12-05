@@ -7,7 +7,7 @@ import { fetchAppConfiguration } from '../redux';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../types";
 import { AppState } from '../redux/store';
-import PatientComponent from './Patient.component';
+import PatientComponent from './PatientList.component';
 
 type SearchAppConfigType = {
 	statusData: ReduxVarType.StatusDataType,

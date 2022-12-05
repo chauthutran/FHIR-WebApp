@@ -21,10 +21,6 @@ const StatusReducer = (state = initialState, action: ReduxVarType.ReduxActionTyp
 		newState.type = "info";
 		newState.message = "Data is loaded successfully !";
 
-		console.log( "=== StatusReducer : " );
-		console.log(  newState  );
-		console.log( "======================================" );
-
 		return newState;
 	}
 	else

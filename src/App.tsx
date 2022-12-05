@@ -2,9 +2,10 @@ import React, { FunctionComponent, useEffect, useState } from 'react'; // import
 
 import { connect } from "react-redux";
 import * as ReduxVarType from "./types";
-import PatientListComponent from './components/Patient.component';
+import PatientListComponent from './components/PatientList.component';
 import SearchAppConfigComponent from './components/SearchAppConfig.component';
 import { AppState } from './redux/store';
+import PatientDetailsComponent from './components/PatientDetails.component';
 
 type AppType = {
 	statusData: ReduxVarType.StatusDataType,
@@ -15,14 +16,17 @@ type AppType = {
 const App: FunctionComponent<AppType> = ({statusData, appConfigData, resourceTypeList}) => {
 
 	useEffect(() => {
-        
+        console.log(statusData.status);
 	}, [statusData]);
 
     
     return (
 		<>
         	{!appConfigData.loaded && <SearchAppConfigComponent />}
-			{appConfigData.loaded && <PatientListComponent />}
+
+			{appConfigData.loaded && ( resourceTypeList.Patient === undefined || resourceTypeList.Patient.selected === undefined ) && <PatientListComponent />}
+
+			{resourceTypeList.Patient && resourceTypeList.Patient.selected && <PatientDetailsComponent />}
 		</>
 	);
 

@@ -7,7 +7,7 @@ export const APP_FHIR_API_BASE_URL = "http://hapi.fhir.org/baseR4/";
 export const APP_CONFIGURATION_URL = `${APP_FHIR_API_BASE_URL}Composition?_format=json&identifier=`;
 
 
-// https://hapi.fhir.org/baseR4/Patient?_count=5&_getpagesoffset=1
+// https://hapi.fhir.org/baseR4/<Patient>?_count=5&_getpagesoffset=1&<searchBy>=<searchValue>
 export const getResourceTypeList = (resourceType: string, searchBy: string, searchValue: string) =>{
     let queryUrl: string = `${APP_FHIR_API_BASE_URL}${resourceType}?_format=json&_count=${PAGE_SIZE}&_getpagesoffset=${PAGE_INDEX}`;
     if( searchBy !== undefined )
@@ -18,5 +18,10 @@ export const getResourceTypeList = (resourceType: string, searchBy: string, sear
     return queryUrl;
 }
 
+
+// https://hapi.fhir.org/baseR4/Patient/<id>
+export const getResourceTypeDetails = (resourceType: string, id: string) =>{
+    return `${APP_FHIR_API_BASE_URL}${resourceType}\\${id}`;
+}
 
 

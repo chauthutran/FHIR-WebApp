@@ -27,3 +27,30 @@ export function fetchResourceTypeList(resourceType: string, searchBy: string, se
         }
     };
 }
+
+
+export function fetchResourceTypeDetails(resourceType: string, id: string): (dispatch: AppDispatch) => Promise<void> {
+    return async (dispatch: AppDispatch) => {
+   
+        dispatch({
+            type: Constant.FETCH_RESOURCE_TYPE_DETAILS_REQUEST
+        });
+
+        try
+        { 
+            const responseData: any = await api.getResourceTypeDetails( resourceType, id );
+            const status: string = ( responseData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE;
+            dispatch({
+                type: status,
+                payload: responseData
+            })
+        }
+        catch(e)
+        {
+            dispatch({
+                type: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE,
+                payload: e
+            })
+        }
+    };
+}

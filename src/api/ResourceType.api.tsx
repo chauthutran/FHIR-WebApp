@@ -25,4 +25,26 @@ export const getResourceTypeList = async( resourceType: string, searchBy: string
         type: resourceType,
         responseData
     }
+};
+
+
+export const getResourceTypeDetails = async( resourceType: string, id: string) => {
+
+    const queryUrl: string = Utils.getResourceTypeDetails(resourceType, id);
+    let responseData;
+
+    try {
+        responseData = await axios({
+            method: 'GET',
+            url: queryUrl
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+
+    return {
+        type: resourceType,
+        responseData
+    }
 }
