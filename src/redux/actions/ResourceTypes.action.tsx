@@ -15,7 +15,7 @@ type AppThunk = ThunkAction<
 >;
 
 // export const useAppDispatch: () => AppDispatch = useDispatch;
-
+ 
 export function fetchResourceTypeList(resourceType: string, searchBy: string, searchValue: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {
     //   // Signal work in progress.
