@@ -13,9 +13,6 @@ type PatientDetailsType = {
 };
 
 const PatientDetails: FunctionComponent<PatientDetailsType> = ({statusData, resourceTypeList, appConfigData}) => {
-	
-    // const patientData: Types.PatientDetailsType = ( resourceTypeList.Patient.selected ) ? Utils.getPatientDetailsInfo( resourceTypeList.Patient.selected ) : {} as any;
-	// console.log(patientData);
 
     const renderPatientData = () => {
         const patientData: Types.PatientDetailsType = Utils.getPatientDetailsInfo( resourceTypeList.Patient.selected );

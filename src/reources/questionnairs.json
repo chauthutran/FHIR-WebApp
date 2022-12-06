@@ -1,0 +1,259 @@
+{
+	"resourceType": "Questionnaire",
+	"id": "152",
+	"meta": {
+		"versionId": "1",
+		"lastUpdated": "2022-11-18T21:24:54.520+09:00",
+		"source": "#CoqkMWnHZrL3iFY9"
+	},
+	"name": "clientRegistrationForm",
+	"title": "Registration",
+	"status": "active",
+	"subjectType": [
+		"Patient"
+	],
+	"description": "This form is client details form with program registration data",
+	"purpose": "This form is used for collection program registration data of a patient.",
+	"item": [{
+			"linkId": "serviceProvision",
+			"text": "Date of service",
+			"type": "date",
+			"required": true
+		},
+		{
+			"linkId": "grp_ClientDetails",
+			"text": "Client details",
+			"type": "group",
+			"item": [{
+					"linkId": "R1",
+					"text": "First name",
+					"type": "string"
+				},
+				{
+					"linkId": "R1",
+					"text": "Last name",
+					"type": "string"
+				},
+				{
+					"linkId": "R3",
+					"text": "National ID No.",
+					"type": "string"
+				},
+				{
+					"linkId": "R4",
+					"text": "Phone Number",
+					"type": "string"
+				},
+				{
+					"linkId": "R5",
+					"text": "Gender",
+					"type": "choice",
+					"required": false,
+					"answerOption": [{
+							"valueCoding": {
+								"code": "F",
+								"display": "Female"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "M",
+								"display": "Male"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "T",
+								"display": "Trans"
+							}
+						}
+					]
+				},
+				{
+					"linkId": "R6",
+					"text": "DoB",
+					"type": "date"
+				},
+				{
+					"linkId": "R7",
+					"text": "Constituency",
+					"type": "string"
+				},
+				{
+					"linkId": "R8",
+					"text": "Community/chiefdom",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"linkId": "grp_programFP",
+			"text": "FP Program",
+			"type": "group",
+			"item": [{
+					"linkId": "FP_Q1",
+					"text": "FP Servicee Provided ?",
+					"type": "boolean",
+					"required": true
+				},
+				{
+					"linkId": "FP_Q2",
+					"text": "Method provided",
+					"type": "choice",
+					"enableWhen": [{
+						"question": "FP_Q1",
+						"operator": "=",
+						"answerBoolean": true
+					}],
+					"required": true,
+					"answerOption": [{
+							"valueCoding": {
+								"code": "PILL",
+								"display": "Pill"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "INJ",
+								"display": "Injectales"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "IMP",
+								"display": "Implant"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "IUD",
+								"display": "IUD"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "COL",
+								"display": "Counsellings"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "OTH",
+								"display": "Other"
+							}
+						}
+					]
+				},
+				{
+					"linkId": "FP_Q3",
+					"text": "Number of cycles",
+					"type": "integer",
+					"enableWhen": [{
+						"question": "FP_Q2",
+						"operator": "=",
+						"answerCoding": {
+							"code": "PILL"
+						}
+					}]
+				},
+				{
+					"linkId": "FP_Q4",
+					"text": "If other (specify)",
+					"type": "text",
+					"enableWhen": [{
+						"question": "FP_Q2",
+						"operator": "=",
+						"answerCoding": {
+							"code": "OTH"
+						}
+					}]
+				}
+			]
+		},
+		{
+			"linkId": "grp_programHIV",
+			"text": "HIV Program",
+			"type": "group",
+			"item": [{
+					"linkId": "HIV_Q1",
+					"text": "HIV Service Provided ?",
+					"type": "boolean",
+					"required": true
+				},
+				{
+					"linkId": "HIV_Q2",
+					"text": "HIV Service Provided",
+					"type": "choice",
+					"enableWhen": [{
+						"question": "HIV_Q1",
+						"operator": "=",
+						"answerBoolean": true
+					}],
+					"required": false,
+					"answerOption": [{
+							"valueCoding": {
+								"code": "HIVST",
+								"display": "HIV ST"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "PrEP",
+								"display": "PrEP"
+							}
+						}
+					]
+				},
+				{
+					"linkId": "HIV_Q3",
+					"text": "Number of ST Kits provided",
+					"type": "integer",
+					"enableWhen": [{
+						"question": "HIV_Q2",
+						"operator": "=",
+						"answerCoding": {
+							"code": "HIVST"
+						}
+					}]
+				},
+				{
+					"linkId": "HIV_Q4",
+					"text": "How did you hear about us ?",
+					"type": "choice",
+					"required": true,
+					"answerOption": [{
+							"valueCoding": {
+								"code": "WhatsApp",
+								"display": "WhatsApp Bot"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "MENTOR",
+								"display": "Mentor"
+							}
+						},
+						{
+							"valueCoding": {
+								"code": "OTH",
+								"display": "Other"
+							}
+						}
+					]
+				},
+				{
+					"linkId": "HIV_Q5",
+					"text": "If other ( specify)",
+					"type": "text",
+					"enableWhen": [{
+						"question": "HIV_Q3",
+						"operator": "=",
+						"answerCoding": {
+							"code": "OTH"
+						}
+					}]
+				}
+			]
+		}
+	]
+}

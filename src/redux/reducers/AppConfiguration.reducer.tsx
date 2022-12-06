@@ -12,9 +12,15 @@ const initialState: ReduxVarType.AppConfigType = {
 const AppConfigurationReducer = (state = initialState, action: ReduxVarType.ReduxActionType) => {
 	let newState = Utils.cloneJson( state );
 
-	if( action.type === Constant.FETCH_APP_CONFIG_SUCCESS ) 
+	// if( action.type === Constant.FETCH_APP_CONFIG_SUCCESS ) 
+	// {
+	// 	newState.appConfig = {};
+	// 	newState.loaded = true;
+	// 	return newState;
+	// } else 
+	if( action.type === Constant.FETCH_LOGIN_SUCCESS ) 
 	{
-		newState.appConfig = {};
+		newState.appConfig = { orgUnit: action.payload };
 		newState.loaded = true;
 		return newState;
 	}

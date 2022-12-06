@@ -1,4 +1,4 @@
-
+import { AlertColor } from "@mui/material";
 import * as Constant from '../../constants';
 import * as Utils from "../../utils";
 import * as ReduxVarType from "../../types";
@@ -7,7 +7,7 @@ import { AppState } from '../store';
 
 const initialState: ReduxVarType.StatusDataType = {
 	status: "",
-	type: "",
+	type: "success",
 	message: ""
 }
 
@@ -20,6 +20,22 @@ const StatusReducer = (state = initialState, action: ReduxVarType.ReduxActionTyp
 		newState.status = action.type;
 		newState.type = "info";
 		newState.message = "Data is loaded successfully !";
+
+		return newState;
+	}
+	else if( action.type === Constant.FETCH_LOGIN_FAILURE )
+	{
+		newState.status = action.type;
+		newState.type = "error";
+		newState.message = "Login Failed";
+
+		return newState;
+	}
+	else if( action.type === Constant.SET_MESSAGE_STATUS )
+	{
+		newState.status = action.type;
+		newState.type = action.payload.type;
+		newState.message = action.payload.message;
 
 		return newState;
 	}
