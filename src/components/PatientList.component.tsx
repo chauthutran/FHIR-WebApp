@@ -13,21 +13,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-
+import Avatar from '@mui/material/Avatar';
 import { fetchResourceTypeList, fetchResourceTypeDetails } from '../redux';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../types";
 import * as Constant from "../constants";
 import { AppState } from '../redux/store';
 import * as Utils from "../utils";
-import imgAppDataSyncStatus from "../images/sync-button.svg";
-import imgNetworkStatus from "../images/cloud_online_nav.svg";
 import SyncIcon from '@mui/icons-material/Sync';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
@@ -74,8 +66,8 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
 	const renderMenuList = () => {
         return <Box
             role="presentation"
-            // onClick={toggleDrawer(false)}
-            // onKeyDown={toggleDrawer(false)}
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
             >
             <List>
                 <ListItem key="clientList" disablePadding>
@@ -130,15 +122,16 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
 
                     {/* Menu item */}
                     <Drawer anchor="left" open={showMenu} onClose={toggleDrawer(false)} >
-                            {renderMenuList()}
+                        {renderMenuList()}
                     </Drawer>
                     {/* ==================== */}
 
                     {/* App Title */}
-                    <Typography  component="div" sx={{ flexGrow: 1 }}>
+                    <Typography component="div" sx={{ flexGrow: 1 }}>
                         Client List
                     </Typography>
                     {/* ==================== */}
+
 
                     {/* The right icons */}
                     <div>
@@ -151,7 +144,7 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
                         >
                             <SyncIcon />
                         </IconButton>
-                        
+
                         <IconButton
                             size="large"
                             aria-controls="menu-appbar"
@@ -172,12 +165,15 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
                    
                     {resourceTypeList.Patient.map((data: any, index: any) => {
                         let details = Utils.getPatientItemInfo(data.resource);
+                        const iconStr = details.fullName.substring(0,2).toUpperCase();
                         return (
-                            <ListItem key={details.id} >
-                                <ListItemAvatar>
-                               
-                                </ListItemAvatar>
-                                <ListItemText primary={details.fullName} secondary={details.birthDate + ", " + details.gender} onClick={(event: any) => handleListItemClick(event, details.id) } />
+                            <ListItem key={details.id} disablePadding>
+                                <ListItemButton>
+                                    <ListItemAvatar>
+                                        <Avatar sx={{ bgcolor: Utils.getColorFromStr(iconStr) }} >{iconStr}</Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={details.fullName} secondary={details.birthDate + ", " + details.gender} onClick={(event: any) => handleListItemClick(event, details.id) } />
+                                </ListItemButton>
                             </ListItem>
                             );
                         }
