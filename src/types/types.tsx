@@ -1,7 +1,7 @@
 import { AlertColor } from "@mui/material";
 
 interface ReduxActionType { type?: string, payload?: any };
-interface AppConfigType { data: {orgUnit: {name: string, [key: string]: any} }, loaded: false };
+interface AppConfigType { data: {orgUnit: {name: string, [key: string]: any}, config: {} }, loaded: false };
 
 // AlertColor 'success' | 'info' | 'warning' | 'error'
 interface StatusDataType { status: string, type: AlertColor, message: string };

@@ -5,7 +5,8 @@ import * as ReduxVarType from "../../types";
 
 const initialState: ReduxVarType.AppConfigType = {
 	"data": {
-		"orgUnit": {"name" : ""}
+		"orgUnit": {"name" : ""},
+		"config": {}
 	},
 	"loaded": false
 }
@@ -14,15 +15,9 @@ const initialState: ReduxVarType.AppConfigType = {
 const AppConfigurationReducer = (state = initialState, action: ReduxVarType.ReduxActionType) => {
 	let newState = Utils.cloneJson( state );
 
-	// if( action.type === Constant.FETCH_APP_CONFIG_SUCCESS ) 
-	// {
-	// 	newState.appConfig = {};
-	// 	newState.loaded = true;
-	// 	return newState;
-	// } else 
 	if( action.type === Constant.FETCH_LOGIN_SUCCESS ) 
 	{
-		newState.data = { orgUnit: action.payload };
+		newState.data = action.payload;
 		newState.loaded = true;
 		console.log(newState.appConfig);
 		return newState;

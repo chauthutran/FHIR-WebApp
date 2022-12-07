@@ -1,0 +1,14 @@
+{
+    "orgUnitCode": "GT2_TEST_IPC",
+    "baseUrl": "http:localhost:8080/fhir/",
+    "menuList": [
+        { "id": "clientList", "name": "Client List", "url": "Patient"},
+        { "id": "devider1", "name": "devider"},
+
+        { "id": "recordList", "name": "recordList", "url": "ServiceRequests"},
+        { "id": "upcomingSchecules", "name": "Upcoming Schecules", "url": "Patient"},
+        { "id": "devider2", "name": "devider" },
+        
+        { "id": "logOut", "name": "Log out", "url": "Patient"}
+    ]
+}

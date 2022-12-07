@@ -4,33 +4,6 @@ import * as Constant from "../../constants";
 import * as api from "../../api";
 import { AppDispatch, AppState } from '../../redux/store';
 
-export function fetchAppConfiguration(appId: string): (dispatch: AppDispatch) => Promise<void> {
-    return async (dispatch: AppDispatch) => {
-   
-        dispatch({
-            type: Constant.FETCH_APP_CONFIG_REQUEST
-        });
-
-        try
-        { 
-            const configData: any = await api.getAppConfiguration( appId );
-            const status: string = ( configData.total > 0 ) ? Constant.FETCH_APP_CONFIG_SUCCESS: Constant.FETCH_APP_CONFIG_FAILURE;
-            dispatch({
-                type: status,
-                payload: configData
-            })
-        }
-        catch(e)
-        {
-            dispatch({
-                type: Constant.FETCH_APP_CONFIG_FAILURE,
-                payload: e
-            })
-        }
-    };
-}
-
-
 export function login(name: string, pwd: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {
    
@@ -38,7 +11,7 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
             type: Constant.FETCH_LOGIN_REQUEST
         });
 
-        try
+        try 
         { 
             let valid: boolean = false;
             let responseData: any = await api.getResourceTypeList( "Organization", "name", name );
@@ -61,12 +34,22 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
                 }
             }
             
+            if( valid )
+            {
+                const condigData: any = await api.getAppConfiguration( orgUnitData.name );
+                dispatch({
+                    type: Constant.FETCH_LOGIN_SUCCESS,
+                    payload: { config: condigData, orgUnit: orgUnitData }
+                })
+            }
+            else
+            {
+                dispatch({
+                    type: Constant.FETCH_LOGIN_FAILURE,
+                    payload: orgUnitData
+                })
+            }
 
-            const status: string = ( valid ) ? Constant.FETCH_LOGIN_SUCCESS : Constant.FETCH_LOGIN_FAILURE;
-            dispatch({
-                type: status,
-                payload: orgUnitData
-            })
         }
         catch(e)
         {

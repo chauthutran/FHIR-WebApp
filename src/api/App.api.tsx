@@ -13,5 +13,18 @@ export const getAppConfiguration = async( appId: string) => {
     // console.log(responseData);
     // return responseData;
 
-    return { total: 1};
+    
+    let responseData;
+    try {
+        responseData = await axios({
+            method: 'GET',
+            url: "../configuration.json"
+        });
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+
+
+    return responseData;
 }

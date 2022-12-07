@@ -42,7 +42,7 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
 
             setShowMenu(open);
     };
-    
+    console.log(appConfigData.data);
 
     const renderMenuList = () => {
         return <Box>
