@@ -1,22 +1,16 @@
 import React from 'react';
 import { Provider } from "react-redux";
 import store from "./redux/store";
-// import { BrowserRouter as Router, HashRouter, Route } from "react-router-dom";
-
-import './App.css';
-// import PatientComponent from './components/Patient.component';
-// import SearchAppConfigComponent from './components/SearchAppConfig.component';
 import App from './App';
 
 function AppWrapper() {
 
 
-  // const store = configureStore();
   return (
     <Provider store={store}>
-      {/* <PatientComponent /> */}
         <App />
     </Provider>
+    
     // <Provider store={store}>
     //       {/* <HashRouter> */}
     //             <div className='app_wrapper'>

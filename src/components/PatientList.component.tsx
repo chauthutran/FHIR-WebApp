@@ -8,7 +8,6 @@ import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -25,6 +24,12 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import clientListIcon from "../images/menu_client_list.svg";
 import recordIcon from "../images/menu_records_list.svg";
 import logOutIcon from "../images/logout.svg";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MainAppBar from "./appBar/MainAppBar.component";
+
 
 
 
@@ -67,114 +72,24 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
             setShowMenu(open);
     };
     
-
-    const renderMenuList = () => {
-        return <Box>
-            <List>
-                <ListItem key="appTitle" disablePadding>
-                    <ListItemButton style={{backgroundColor: "#90CAF9"}}>
-                        <ListItemIcon>
-                            <div className="navigation__logo"></div>
-                        </ListItemIcon>
-                        <ListItemText primary={appConfigData.data.orgUnit.name} />
-                    </ListItemButton>
-                </ListItem> 
-
-                <ListItem key="clientList" disablePadding onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} >
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${clientListIcon})` }}></div>
-                        </ListItemIcon>
-                        <ListItemText primary="Client List" />
-                    </ListItemButton>
-                </ListItem>
-
-                <Divider />
-                <ListItem key="recordList" disablePadding onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} >
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${recordIcon})` }}> </div>
-                        </ListItemIcon>
-                        <ListItemText primary="Record List" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem key="upcomingSchedules" disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${recordIcon})` }}></div>
-                        </ListItemIcon>
-                        <ListItemText primary="Upcoming Schedules" />
-                    </ListItemButton>
-                </ListItem>
-
-                
-                <Divider />
-                <ListItem key="logout" disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${logOutIcon})` }}></div>
-                        </ListItemIcon>
-                        <ListItemText primary="Log out" />
-                    </ListItemButton>
-                </ListItem>
-            </List>
-        </Box>
-	}
-
-    const renderAppBar = () => {
-        return ( <AppBar position="static" style={{backgroundColor: "#0D47A1"}} >
-            <Toolbar>
-                {/* Icon for menu which is showed on the left side */}
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleDrawer(true)}
-                >
-                    <MenuIcon />
-                </IconButton>
-                {/* ==================== */}
-
-                {/* Menu item */}
-                <Drawer anchor="left" open={showMenu} onClose={toggleDrawer(false)} >
-                    {renderMenuList()}
-                </Drawer>
-                {/* ==================== */}
-
-                {/* App Title */}
-                <Typography component="div" sx={{ flexGrow: 1 }}>
-                    Client List
-                </Typography>
-                {/* ==================== */}
-
-
-                {/* The right icons */}
-                <div>
-                    <IconButton
-                        size="large"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        // onClick={}
-                        color="inherit"
+    const renderViewSelector = () => {
+        return (
+            <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Age"
+                    // onChange={handleChange}
                     >
-                        <SyncIcon />
-                    </IconButton>
-
-                    <IconButton
-                        size="large"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        // onClick={}
-                        color="inherit"
-                    >
-                        <CloudUploadIcon />
-                    </IconButton>
-                
-                </div>
-                {/* ==================== */}
-            </Toolbar>
-        </AppBar> );
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                    </Select> 
+                </FormControl>
+            </Box>
+        )
     }
 
 	return ( resourceTypeList.Patient === undefined ) 
@@ -182,7 +97,9 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
     
     : (
 		<>
-            {renderAppBar()}
+            <MainAppBar />
+
+            {renderViewSelector()}
 
 			<div>
                 {resourceTypeList.Patient && <List key="Patient">
