@@ -5938,3 +5938,26 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/** NEW STYLES **/
+.navigation__items-icon {
+	float: left;
+	width: 24px;
+	height: 24px;
+	margin: 12px 8px 12px 8px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.navigation__logo {
+	width: 56px;
+	height: 56px;
+	margin: 0px 8px 8px 0px;
+	background-image: url(../images/logo_cws.svg);
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}

@@ -41,22 +41,22 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
         try
         { 
             let valid: boolean = false;
-            const orgUnitData: any = await api.getResourceTypeList( "Organization", "name", name );
-            if( orgUnitData.responseData.statusText == "OK" )
+            let responseData: any = await api.getResourceTypeList( "Organization", "name", name );
+            responseData = responseData.responseData;
+            const orgUnitData = responseData.data.entry[0].resource;
+
+            if( responseData.statusText == "OK" && responseData.data.total > 0 )
             {
-                if( orgUnitData.responseData.data.total > 0 )
+                const extensions = orgUnitData.extension;
+                for( let i=0; i<extensions.length; i++ )
                 {
-                    const extensions = orgUnitData.responseData.data.entry[0].resource.extension;
-                    for( let i=0; i<extensions.length; i++ )
+                    const extension = extensions[i];
+                    const url: URL = new URL(extension.url);
+                    const hash: string = url.hash;
+                    if( hash == "#password" && extension.valueCode === pwd )
                     {
-                        const extension = extensions[i];
-                        const url: URL = new URL(extension.url);
-                        const hash: string = url.hash;
-                        if( hash == "#password" && extension.valueCode === pwd )
-                        {
-                            valid = true;
-                            break;
-                        }
+                        valid = true;
+                        break;
                     }
                 }
             }
