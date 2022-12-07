@@ -5945,7 +5945,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	float: left;
 	width: 24px;
 	height: 24px;
-	margin: 12px 8px 12px 8px;
+	margin: 0px 8px 8px 0px;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -5956,6 +5956,24 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	height: 56px;
 	margin: 0px 8px 8px 0px;
 	background-image: url(../images/logo_cws.svg);
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+
+.client-list-icon {
+	margin: 0px 8px 8px 0px;
+	background-image: url(../images/menu_client_list.svg);
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.report-icon {
+	background-image: url(../images/menu_records_list.svg);
 	background-repeat: no-repeat;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;

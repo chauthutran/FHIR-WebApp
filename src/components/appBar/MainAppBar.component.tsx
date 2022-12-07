@@ -17,21 +17,30 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../../types";
 import { AppState } from '../../redux/store';
-// import clientListIcon from "../../images/menu_client_list.svg";
-// import recordIcon from "../../images/menu_records_list.svg";
-// import logOutIcon from "../../images/logout.svg";
+import { fetchResourceTypeList } from '../../redux';
+import * as Constant from "../../constants";
 
 type MainAppBarType = {
-	appConfigData: ReduxVarType.AppConfigType
+    statusData: ReduxVarType.StatusDataType,
+	appConfigData: ReduxVarType.AppConfigType,
+    fetchResourceTypeList: typeof fetchResourceTypeList
 };
 
-const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
+const MainAppBar: FunctionComponent<MainAppBarType> = ({statusData, appConfigData, fetchResourceTypeList}) => {
 	
     const [showMenu, setShowMenu] = useState(false);
 
-    const clientListIcon = require("../../images/menu_client_list.svg").default;
-    const recordIcon = require("../../images/menu_records_list.svg").default;
     const logOutIcon = require("../../images/logout.svg").default;
+
+
+    const handleItemOnClick = (
+        event: React.KeyboardEvent | React.MouseEvent,
+        pathName: string,
+    ) => {
+        fetchResourceTypeList( pathName, Constant.QUERY_ORGUNIT_FILTER_KEY, appConfigData.data.orgUnit.id );
+        setShowMenu(false);
+    };
+
 
     const toggleDrawer =
         (open: boolean) =>
@@ -42,11 +51,11 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
 
             setShowMenu(open);
     };
-    console.log(appConfigData.data);
 
     const renderMenuList = () => {
         return <Box>
             <List>
+                {/* Menu header */}
                 <ListItem key="appTitle" disablePadding>
                     <ListItemButton style={{backgroundColor: "#90CAF9"}}>
                         <ListItemIcon>
@@ -56,35 +65,27 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
                     </ListItemButton>
                 </ListItem> 
 
-                <ListItem key="clientList" disablePadding onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} >
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${clientListIcon})` }}></div>
-                        </ListItemIcon>
-                        <ListItemText primary="Client List" />
-                    </ListItemButton>
-                </ListItem>
 
-                <Divider />
-                <ListItem key="recordList" disablePadding onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} >
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${recordIcon})` }}> </div>
-                        </ListItemIcon>
-                        <ListItemText primary="Record List" />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem key="upcomingSchedules" disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <div className="navigation__items-icon" style={{backgroundImage: `url(${recordIcon})` }}></div>
-                        </ListItemIcon>
-                        <ListItemText primary="Upcoming Schedules" />
-                    </ListItemButton>
-                </ListItem>
+                {/* Menu item */}
+                {appConfigData.data.config.menus.map((item: any, index: any) => {
+                    
+                    let iconClazz = `navigation__items-icon ${item.iconClass}`;
+                    return ( item.label == "-") ? <Divider /> : (
+                        <ListItem key={item.id} disablePadding 
+                            onClick={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 
+                            onKeyDown={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 
+                        >
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <div className={iconClazz} ></div>
+                                </ListItemIcon>
+                                <ListItemText primary={item.label} />
+                            </ListItemButton>
+                        </ListItem>
+                    )
+                })}
 
-                
-                <Divider />
+                <Divider /> 
                 <ListItem key="logout" disablePadding>
                     <ListItemButton>
                         <ListItemIcon>
@@ -93,6 +94,7 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
                         <ListItemText primary="Log out" />
                     </ListItemButton>
                 </ListItem>
+
             </List>
         </Box>
 	}
@@ -112,11 +114,13 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
                 </IconButton>
                 {/* ==================== */}
 
-                {/* Menu item */}
+
+                {/* Menu container */}
                 <Drawer anchor="left" open={showMenu} onClose={toggleDrawer(false)} >
                     {renderMenuList()}
                 </Drawer>
                 {/* ==================== */}
+
 
                 {/* App Title */}
                 <Typography component="div" sx={{ flexGrow: 1 }}>
@@ -157,8 +161,15 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
 
 const mapStateToProps = (state: AppState) => {
     return {
+        statusData: state.statusData,
 		appConfigData: state.appConfigData
     };
 };
 
-export default connect(mapStateToProps, null)(MainAppBar);
+const mapDispatchToProps = (dispatch: any) => {
+	return {
+		fetchResourceTypeList: (resourceType: string, searchBy: string, searchValue: string) => dispatch(fetchResourceTypeList(resourceType, searchBy, searchValue))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainAppBar);

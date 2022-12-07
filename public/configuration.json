@@ -1,14 +1,29 @@
 {
-    "orgUnitCode": "GT2_TEST_IPC",
-    "baseUrl": "http:localhost:8080/fhir/",
-    "menuList": [
-        { "id": "clientList", "name": "Client List", "url": "Patient"},
-        { "id": "devider1", "name": "devider"},
+	"orgUnitCode": "GT2_TEST_IPC",
+	"baseUrl": "http://localhost:8080/fhir/",
+	"menus": [{
+			"id": "clientList",
+			"label": "Client List",
+			"pathName": "Patient",
+			"iconClass": "client-list-icon"
+		},
+		{
+			"id": "devider1",
+			"label": "-"
+		},
 
-        { "id": "recordList", "name": "recordList", "url": "ServiceRequests"},
-        { "id": "upcomingSchecules", "name": "Upcoming Schecules", "url": "Patient"},
-        { "id": "devider2", "name": "devider" },
-        
-        { "id": "logOut", "name": "Log out", "url": "Patient"}
-    ]
+		{
+			"id": "recordList",
+			"label": "Record List",
+			"pathName": "ServiceRequest",
+			"iconClass": "report-icon"
+		},
+		{
+			"id": "upcomingSchecules",
+			"label": "Upcoming Schecules",
+			"pathName": "Patient",
+			"iconClass": "report-icon"
+		}
+
+	]
 }

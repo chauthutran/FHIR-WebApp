@@ -6,7 +6,7 @@ import * as ReduxVarType from "../../types";
 const initialState: ReduxVarType.AppConfigType = {
 	"data": {
 		"orgUnit": {"name" : ""},
-		"config": {}
+		"config": {"menus": []}
 	},
 	"loaded": false
 }

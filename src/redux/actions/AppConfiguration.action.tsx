@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { ThunkAction } from "redux-thunk";
+import * as Utils from "../../utils";
 import * as Constant from "../../constants";
 import * as api from "../../api";
 import { AppDispatch, AppState } from '../../redux/store';
@@ -34,12 +34,16 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
                 }
             }
             
-            if( valid )
+            if( valid ) 
             {
-                const condigData: any = await api.getAppConfiguration( orgUnitData.name );
+                const configDataResponse: any = await api.getAppConfiguration( orgUnitData.name );
+
+                const configData =configDataResponse.data;
+                Utils.setBaseUrl( configData.baseUrl );
+
                 dispatch({
                     type: Constant.FETCH_LOGIN_SUCCESS,
-                    payload: { config: condigData, orgUnit: orgUnitData }
+                    payload: { config: configData, orgUnit: orgUnitData }
                 })
             }
             else
