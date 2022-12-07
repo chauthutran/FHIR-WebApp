@@ -17,10 +17,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { connect } from "react-redux";
 import * as ReduxVarType from "../../types";
 import { AppState } from '../../redux/store';
-import clientListIcon from "../../images/menu_client_list.svg";
-import recordIcon from "../../images/menu_records_list.svg";
-import logOutIcon from "../../images/logout.svg";
-
+// import clientListIcon from "../../images/menu_client_list.svg";
+// import recordIcon from "../../images/menu_records_list.svg";
+// import logOutIcon from "../../images/logout.svg";
 
 type MainAppBarType = {
 	appConfigData: ReduxVarType.AppConfigType
@@ -29,7 +28,11 @@ type MainAppBarType = {
 const MainAppBar: FunctionComponent<MainAppBarType> = ({appConfigData}) => {
 	
     const [showMenu, setShowMenu] = useState(false);
-    
+
+    const clientListIcon = require("../../images/menu_client_list.svg").default;
+    const recordIcon = require("../../images/menu_records_list.svg").default;
+    const logOutIcon = require("../../images/logout.svg").default;
+
     const toggleDrawer =
         (open: boolean) =>
         (event: React.KeyboardEvent | React.MouseEvent) => {

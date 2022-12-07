@@ -4,14 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import { fetchResourceTypeList, fetchResourceTypeDetails } from '../redux';
 import { connect } from "react-redux";
@@ -19,18 +12,11 @@ import * as ReduxVarType from "../types";
 import * as Constant from "../constants";
 import { AppState } from '../redux/store';
 import * as Utils from "../utils";
-import SyncIcon from '@mui/icons-material/Sync';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import clientListIcon from "../images/menu_client_list.svg";
-import recordIcon from "../images/menu_records_list.svg";
-import logOutIcon from "../images/logout.svg";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MainAppBar from "./appBar/MainAppBar.component";
-
-
 
 
 type PatientListType = {
