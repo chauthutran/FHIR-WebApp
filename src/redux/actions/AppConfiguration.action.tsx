@@ -13,12 +13,13 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
 
         try 
         { 
+            // Check Login
             let valid: boolean = false;
-            let responseData: any = await api.getResourceTypeList( "Organization", "name", name );
-            responseData = responseData.responseData;
-            const orgUnitData = responseData.data.entry[0].resource;
+            let orgUnitResponseData: any = await api.getResourceTypeList( "Organization", "name", name );
+            orgUnitResponseData = orgUnitResponseData.responseData;
+            const orgUnitData = orgUnitResponseData.data.entry[0].resource;
 
-            if( responseData.statusText == "OK" && responseData.data.total > 0 )
+            if( orgUnitResponseData.statusText == "OK" && orgUnitResponseData.data.total > 0 )
             {
                 const extensions = orgUnitData.extension;
                 for( let i=0; i<extensions.length; i++ )
@@ -34,16 +35,20 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
                 }
             }
             
+            // Load configuration, such as menus, registrationForm, ...
             if( valid ) 
             {
                 const configDataResponse: any = await api.getAppConfiguration( orgUnitData.name );
-
                 const configData =configDataResponse.data;
-                Utils.setBaseUrl( configData.baseUrl );
+
+                const registerForm = configData.registerForm.split("/");
+                const registerFormResponse: any = await api.getResourceTypeDetails( registerForm[0], registerForm[1] );
+
+                Utils.setBaseUrl( configData.baseUrl ); 
 
                 dispatch({
                     type: Constant.FETCH_LOGIN_SUCCESS,
-                    payload: { config: configData, orgUnit: orgUnitData }
+                    payload: { config: configData, orgUnit: orgUnitData, registrationForm: registerFormResponse.responseData.data }
                 })
             }
             else

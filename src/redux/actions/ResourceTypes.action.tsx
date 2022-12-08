@@ -56,3 +56,10 @@ export function fetchResourceTypeDetails(resourceType: string, id: string): (dis
         }
     };
 }
+
+export const removeSelectedResourceType = () => {
+	
+	return {
+		type: Constant.REMOVE_SELECTED_RESOURCE_TYPE,
+	};
+};

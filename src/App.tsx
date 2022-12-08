@@ -16,11 +16,7 @@ type AppType = {
 const App: FunctionComponent<AppType> = ({statusData, appConfigData, resourceTypeList}) => {
 
 	useEffect(() => {
-		console.log("========================== App=====================");
-        console.log(statusData);
-        console.log(appConfigData);
-        console.log(resourceTypeList);
-		console.log("===================================================");
+
 	}, [statusData]);
 
     
@@ -28,9 +24,9 @@ const App: FunctionComponent<AppType> = ({statusData, appConfigData, resourceTyp
 		<>
         	{!appConfigData.loaded && <SearchAppConfigComponent />}
 
-			{appConfigData.loaded && ( resourceTypeList.Patient === undefined || resourceTypeList.Patient.selected === undefined ) && <PatientListComponent />}
+			{appConfigData.loaded && ( resourceTypeList.Patient === undefined || resourceTypeList.selected === undefined ) && <PatientListComponent />}
 
-			{resourceTypeList.Patient && resourceTypeList.Patient.selected && <PatientDetailsComponent />}
+			{resourceTypeList.selected && <PatientDetailsComponent />}
 		</>
 	);
 

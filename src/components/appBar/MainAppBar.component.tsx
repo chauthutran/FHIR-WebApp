@@ -70,7 +70,7 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({statusData, appConfigDat
                 {appConfigData.data.config.menus.map((item: any, index: any) => {
                     
                     let iconClazz = `navigation__items-icon ${item.iconClass}`;
-                    return ( item.label == "-") ? <Divider /> : (
+                    return ( item.label == "-") ? <Divider key={index} /> : (
                         <ListItem key={item.id} disablePadding 
                             onClick={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 
                             onKeyDown={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 
@@ -85,7 +85,7 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({statusData, appConfigDat
                     )
                 })}
 
-                <Divider /> 
+                <Divider key="logout_key"/> 
                 <ListItem key="logout" disablePadding>
                     <ListItemButton>
                         <ListItemIcon>

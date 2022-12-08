@@ -11,7 +11,6 @@
 			"id": "devider1",
 			"label": "-"
 		},
-
 		{
 			"id": "recordList",
 			"label": "Record List",
@@ -25,5 +24,6 @@
 			"iconClass": "report-icon"
 		}
 
-	]
+	],
+	"registerForm": "Questionnaire/152"
 }

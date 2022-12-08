@@ -6,7 +6,8 @@ import * as ReduxVarType from "../../types";
 const initialState: ReduxVarType.AppConfigType = {
 	"data": {
 		"orgUnit": {"name" : ""},
-		"config": {"menus": []}
+		"config": {"menus": []},
+		"registrationForm": {}
 	},
 	"loaded": false
 }
@@ -19,7 +20,7 @@ const AppConfigurationReducer = (state = initialState, action: ReduxVarType.Redu
 	{
 		newState.data = action.payload;
 		newState.loaded = true;
-		console.log(newState.appConfig);
+console.log(newState.appConfig);
 		return newState;
 	}
 	else

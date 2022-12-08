@@ -13,17 +13,17 @@ export const getPatientItemInfo = ( data: any ) => {
     fullName += " " + name.family;
     
 
-    const patientData: Types.PatientInfoType = { id, fullName, birthDate, gender };
+    const patientData: Types.JsonType = { id, fullName, birthDate, gender };
     return patientData;
 }
 
-// interface PatientInfoType {id: string, fullName: string, birthDate: string, gender: string };
+// interface JsonType {id: string, fullName: string, birthDate: string, gender: string };
 // interface PatientServiceListType  {id: string, codes: {code: string, display: string}[]} [];
-// interface PatientDetailsType {details: PatientInfoType, services: PatientServiceListType};
+// interface PatientDetailsType {details: JsonType, services: PatientServiceListType};
 
 
 export const getPatientDetailsInfo = ( data: any ) => {
-    let details: Types.PatientInfoType = getPatientItemInfo( data.details );
+    let details: Types.JsonType = getPatientItemInfo( data.details );
 
     let services = [];
     for( let i=0; i<data.services.length; i++ )
