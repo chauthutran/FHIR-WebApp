@@ -5,7 +5,7 @@ import * as Constant from "../constants";
 import { AppState } from '../redux/store';
 import * as Utils from "../utils";
 import * as Types from "../types";
-import SubAppBarComponent from './appBar/SubAppBar.component';
+import SubAppBar from './appBar/SubAppBar.component';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -149,11 +149,16 @@ const Form: FunctionComponent<FormType> = ({formConfig, formData, statusData}) =
     } 
 
     return (
-        <Box sx={{ paddingLeft: "10px", margin: "10px" }}>
+        <>
+            <SubAppBar />
+
+            <Box sx={{ paddingLeft: "10px", margin: "10px" }}>
             <Stack spacing={2}>
                 {renderForm()}
             </Stack>
         </Box>
+        </>
+        
 	);
 
 }
