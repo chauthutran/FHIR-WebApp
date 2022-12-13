@@ -1,5 +1,4 @@
 
-import { Type } from "typescript";
 import * as Types from "../types";
 
 export const getPatientItemInfo = ( data: any ) => {
@@ -16,11 +15,6 @@ export const getPatientItemInfo = ( data: any ) => {
     const patientData: Types.JsonType = { id, fullName, birthDate, gender };
     return patientData;
 }
-
-// interface JsonType {id: string, fullName: string, birthDate: string, gender: string };
-// interface PatientServiceListType  {id: string, codes: {code: string, display: string}[]} [];
-// interface PatientDetailsType {details: JsonType, services: PatientServiceListType};
-
 
 export const getPatientDetailsInfo = ( data: any ) => {
     let details: Types.JsonType = getPatientItemInfo( data.details );

@@ -1,6 +1,8 @@
 import * as Constant from "../../constants";
 import * as api from "../../api";
 import { AppDispatch } from '../../redux/store';
+import * as Types from "../../types";
+
  
 export function fetchResourceTypeList(resourceType: string, searchBy: string, searchValue: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {
@@ -45,6 +47,35 @@ export function fetchResourceTypeDetails(resourceType: string, id: string): (dis
             dispatch({
                 type: Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS,
                 payload: { details: responseDetailsData, services: responseServiceRequests }
+            })
+        }
+        catch(e)
+        {
+            dispatch({
+                type: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE,
+                payload: e
+            })
+        }
+    };
+}
+
+
+export function createResourceType(data: Types.JsonType): (dispatch: AppDispatch) => Promise<void> {
+    return async (dispatch: AppDispatch) => {
+   
+        dispatch({
+            type: Constant.FETCH_RESOURCE_TYPE_CREATE_REQUEST
+        });
+
+        try
+        { 
+            const responseData: any = await api.createResourceType( data );
+
+            const status: string = ( responseData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_CREATE_SUCCESS: Constant.FETCH_RESOURCE_TYPE_CREATE_FAILURE;
+
+            dispatch({
+                type: status,
+                payload: responseData
             })
         }
         catch(e)

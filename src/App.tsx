@@ -1,15 +1,15 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
+import { FunctionComponent, useEffect } from 'react'; // importing FunctionComponent
 
 import { connect } from "react-redux";
-import * as ReduxVarType from "./types";
+import * as Types from "./types";
 import PatientListComponent from './components/PatientList.component';
 import SearchAppConfigComponent from './components/Login.component';
 import { AppState } from './redux/store';
 import PatientDetailsComponent from './components/PatientDetails.component';
 
 type AppType = {
-	statusData: ReduxVarType.StatusDataType,
-	appConfigData: ReduxVarType.AppConfigType,
+	statusData: Types.StatusDataType,
+	appConfigData: Types.AppConfigType,
 	resourceTypeList: any,
 };
 

@@ -6,11 +6,12 @@ export const cloneJson = ( jsonData: any ) => {
 
 export const getColorFromStr = ( text: string ) => {
     var hash = 0;
-    for (var i = 0; i < text.length; i++) {
+    for (let i = 0; i < text.length; i++) {
         hash = text.charCodeAt(i) + ((hash << 5) - hash);
     }
+
     var colour = '#';
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         var value = (hash >> (i * 8)) & 0xFF;
         colour += ('00' + value.toString(16)).substr(-2);
     }

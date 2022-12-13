@@ -1,18 +1,17 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
+import { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
 import Alert, { AlertColor } from '@mui/material/Alert';
-import * as Constant from "../constants";
 import TextField from '@mui/material/TextField';
 import { login, resetMessageStatus, setMessageStatus } from '../redux';
 import { connect } from "react-redux";
-import * as ReduxVarType from "../types";
+import * as Types from "../types";
 import { AppState } from '../redux/store';
 import { Portal, Snackbar } from '@mui/material';
 import "../styles/style.css";
 
 
 type LoginType = {
-	statusData: ReduxVarType.StatusDataType,
-	appConfigData: ReduxVarType.AppConfigType,
+	statusData: Types.StatusDataType,
+	appConfigData: Types.AppConfigType,
 	resourceTypeList: any,
 	login: typeof login,
 	resetMessageStatus: typeof resetMessageStatus,
@@ -21,7 +20,6 @@ type LoginType = {
 
 const Login: FunctionComponent<LoginType> = ({ statusData, appConfigData, resourceTypeList, login, resetMessageStatus, setMessageStatus }) => {
 
-	// let logInData: {[name: string]: string} = {name: "", pwd: ""};
 	const [name, setName] = useState("GT2_TEST_IPC");
 	const [password, setPassword] = useState("1234");
 

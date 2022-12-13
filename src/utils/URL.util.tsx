@@ -1,6 +1,3 @@
-import * as Constant from "../constants";
-
-
 export const PAGE_SIZE = 30;
 export const PAGE_INDEX = 1;
 
@@ -9,7 +6,7 @@ export const PAGE_INDEX = 1;
 
 let APP_FHIR_API_BASE_URL: string = "http://localhost:8080/fhir/";
 
-// https://hapi.fhir.org/baseR4/Patient/<id>
+// https://hapi.fhir.org/baseR4/
 export const setBaseUrl = ( url: string ) =>{
     APP_FHIR_API_BASE_URL = url;
 }
@@ -32,3 +29,8 @@ export const getResourceTypeDetails = (resourceType: string, id: string) =>{
     return `${APP_FHIR_API_BASE_URL}${resourceType}\\${id}`;
 }
 
+
+// https://hapi.fhir.org/baseR4/create
+export const createResourceType = () =>{
+    return `${APP_FHIR_API_BASE_URL}$create`;
+}

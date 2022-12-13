@@ -1,6 +1,5 @@
 
 import * as Constant from '../../constants';
-import { AppState } from '../../redux/store';
 import { AlertColor } from "@mui/material";
 
 export const resetMessageStatus = () => {

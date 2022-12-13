@@ -1,8 +1,7 @@
-import { Action } from "redux";
 import * as Utils from "../../utils";
 import * as Constant from "../../constants";
 import * as api from "../../api";
-import { AppDispatch, AppState } from '../../redux/store';
+import { AppDispatch } from '../../redux/store';
 
 export function login(name: string, pwd: string): (dispatch: AppDispatch) => Promise<void> {
     return async (dispatch: AppDispatch) => {
@@ -19,7 +18,7 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
             orgUnitResponseData = orgUnitResponseData.responseData;
             const orgUnitData = orgUnitResponseData.data.entry[0].resource;
 
-            if( orgUnitResponseData.statusText == "OK" && orgUnitResponseData.data.total > 0 )
+            if( orgUnitResponseData.statusText === "OK" && orgUnitResponseData.data.total > 0 )
             {
                 const extensions = orgUnitData.extension;
                 for( let i=0; i<extensions.length; i++ )
@@ -27,7 +26,7 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
                     const extension = extensions[i];
                     const url: URL = new URL(extension.url);
                     const hash: string = url.hash;
-                    if( hash == "#password" && extension.valueCode === pwd )
+                    if( hash === "#password" && extension.valueCode === pwd )
                     {
                         valid = true;
                         break;

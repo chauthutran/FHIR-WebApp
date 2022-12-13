@@ -25,7 +25,6 @@ const ResourceTypeReducer = (state = initialState, action: ReduxVarType.ReduxAct
 	}
 	if( action.type === Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS ) 
 	{
-		const type = action.payload.details.type;
 		let services = action.payload.services.responseData.data.entry;
 		services = ( services ) ? services : [];
 		newState.selected = { 
@@ -35,7 +34,23 @@ const ResourceTypeReducer = (state = initialState, action: ReduxVarType.ReduxAct
 
 		return newState;
 	}
-	else if( action.type ===  Constant.REMOVE_SELECTED_RESOURCE_TYPE )
+	else if( action.type === Constant.FETCH_RESOURCE_TYPE_CREATE_SUCCESS )
+	{
+		const data = action.payload;
+		const type = data.resourceType;
+		
+		if( !newState[type] ) 
+		{
+			newState[type] = {};
+		}
+		newState[type].push( data );
+
+		delete newState.selected;
+		newState.selected = data;
+
+		return newState;
+	}
+	else if( action.type === Constant.REMOVE_SELECTED_RESOURCE_TYPE )
 	{
 		delete newState.selected;
 		return newState;

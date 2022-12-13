@@ -1,9 +1,7 @@
-import { AlertColor } from "@mui/material";
 import * as Constant from '../../constants';
 import * as Utils from "../../utils";
 import * as ReduxVarType from "../../types";
 
-import { AppState } from '../store';
 
 const initialState: ReduxVarType.StatusDataType = {
 	status: "",

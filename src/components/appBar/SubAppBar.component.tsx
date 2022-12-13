@@ -1,30 +1,20 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import React, { FunctionComponent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SyncIcon from '@mui/icons-material/Sync';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { connect } from "react-redux";
-import * as ReduxVarType from "../../types";
+import * as Types from "../../types";
 import { AppState } from '../../redux/store';
-import { fetchResourceTypeList, removeSelectedResourceType } from '../../redux';
-import * as Constant from "../../constants";
+import { removeSelectedResourceType } from '../../redux';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 type SubAppBarType = {
-    statusData: ReduxVarType.StatusDataType,
-	appConfigData: ReduxVarType.AppConfigType,
+    statusData: Types.StatusDataType,
+	appConfigData: Types.AppConfigType,
     removeSelectedResourceType: typeof removeSelectedResourceType
 };
 

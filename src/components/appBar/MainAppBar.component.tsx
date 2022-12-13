@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
+import React, { FunctionComponent, useState } from 'react'; // importing FunctionComponent
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -70,7 +70,7 @@ const MainAppBar: FunctionComponent<MainAppBarType> = ({statusData, appConfigDat
                 {appConfigData.data.config.menus.map((item: any, index: any) => {
                     
                     let iconClazz = `navigation__items-icon ${item.iconClass}`;
-                    return ( item.label == "-") ? <Divider key={index} /> : (
+                    return ( item.label === "-") ? <Divider key={index} /> : (
                         <ListItem key={item.id} disablePadding 
                             onClick={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 
                             onKeyDown={(event: React.KeyboardEvent | React.MouseEvent) => handleItemOnClick(event, item.pathName)} 

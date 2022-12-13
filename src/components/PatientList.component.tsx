@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'; // importing FunctionComponent
+import React, { FunctionComponent, useEffect } from 'react'; // importing FunctionComponent
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -15,7 +15,7 @@ import * as Utils from "../utils";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MainAppBar from "./appBar/MainAppBar.component";
 
 
@@ -29,8 +29,6 @@ type PatientListType = {
 
 const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTypeList, appConfigData, fetchResourceTypeList, fetchResourceTypeDetails}) => {
 	
-    const [showMenu, setShowMenu] = useState(false);
-
     useEffect(() => {
         if( appConfigData.loaded && resourceTypeList.Patient === undefined )
 		{
@@ -44,18 +42,6 @@ const PatientList: FunctionComponent<PatientListType> = ({statusData, resourceTy
         id: string,
     ) => {
         fetchResourceTypeDetails("Patient", id );
-    };
-
-    
-    const toggleDrawer =
-        (open: boolean) =>
-        (event: React.KeyboardEvent | React.MouseEvent) => {
-            console.log( "toggleDrawer : " + open );
-            if ( event.type === 'keydown' &&  ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift') ) {
-                return;
-            }
-
-            setShowMenu(open);
     };
     
     const renderViewSelector = () => {
