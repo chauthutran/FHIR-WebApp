@@ -18,7 +18,7 @@ export function login(name: string, pwd: string): (dispatch: AppDispatch) => Pro
             orgUnitResponseData = orgUnitResponseData.responseData;
             const orgUnitData = orgUnitResponseData.data.entry[0].resource;
 
-            if( orgUnitResponseData.statusText === "OK" && orgUnitResponseData.data.total > 0 )
+            if( orgUnitResponseData.status === 200 && orgUnitResponseData.data.total > 0 )
             {
                 const extensions = orgUnitData.extension;
                 for( let i=0; i<extensions.length; i++ )

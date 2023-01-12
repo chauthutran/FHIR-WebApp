@@ -1,5 +1,5 @@
 export const PAGE_SIZE = 30;
-export const PAGE_INDEX = 1;
+export const PAGE_INDEX = 0;
 
 
 // export const APP_CONFIGURATION_URL = `${Constant.APP_FHIR_API_BASE_URL}Composition?_format=json&identifier=`;

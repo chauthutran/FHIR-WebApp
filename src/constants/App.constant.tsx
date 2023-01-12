@@ -5,7 +5,7 @@
 export const APP_FHIR_API_BASE_URL = "http://localhost:8080/fhir/";
 
 export const QUERY_ORGUNIT_FILTER_KEY = "organization";
-export const QUERY_ORGUNIT_FILTER_ID = "202";
+export const QUERY_ORGUNIT_FILTER_ID = "102";
 
 export const QUERY_REGISTRATION_FORM_ID = "152";
 

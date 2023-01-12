@@ -14,7 +14,7 @@ export function fetchResourceTypeList(resourceType: string, searchBy: string, se
         try
         { 
             const responseData: any = await api.getResourceTypeList( resourceType, searchBy, searchValue );
-            const status: string = ( responseData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_SUCCESS: Constant.FETCH_RESOURCE_TYPE_FAILURE;
+            const status: string = ( responseData.responseData.status === 200 ) ? Constant.FETCH_RESOURCE_TYPE_SUCCESS: Constant.FETCH_RESOURCE_TYPE_FAILURE;
             dispatch({
                 type: status,
                 payload: responseData
@@ -43,7 +43,7 @@ export function fetchResourceTypeDetails(resourceType: string, id: string): (dis
             const responseDetailsData: any = await api.getResourceTypeDetails( resourceType, id );
             const responseServiceRequests: any = await api.getResourceTypeList("ServiceRequest", "patient", id);
 
-            // const status: string = ( responseDetailsData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE;
+            // const status: string = ( responseDetailsData.responseData.status === 200 ) ? Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS: Constant.FETCH_RESOURCE_TYPE_DETAILS_FAILURE;
             dispatch({
                 type: Constant.FETCH_RESOURCE_TYPE_DETAILS_SUCCESS,
                 payload: { details: responseDetailsData, services: responseServiceRequests }
@@ -71,7 +71,7 @@ export function createResourceType(data: Types.JsonType): (dispatch: AppDispatch
         { 
             const responseData: any = await api.createResourceType( data );
 
-            const status: string = ( responseData.responseData.statusText === "OK" ) ? Constant.FETCH_RESOURCE_TYPE_CREATE_SUCCESS: Constant.FETCH_RESOURCE_TYPE_CREATE_FAILURE;
+            const status: string = ( responseData.responseData.status === 200 ) ? Constant.FETCH_RESOURCE_TYPE_CREATE_SUCCESS: Constant.FETCH_RESOURCE_TYPE_CREATE_FAILURE;
 
             dispatch({
                 type: status,

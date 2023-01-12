@@ -17,13 +17,15 @@ const App: FunctionComponent<AppType> = ({statusData, appConfigData, resourceTyp
 
 	useEffect(() => {
 
-	}, [statusData]);
+	}, [statusData, appConfigData, resourceTypeList]);
 
-    
+    console.log( "===================================" );
+    console.log( appConfigData.loaded );
+    console.log( resourceTypeList );
     return (
 		<>
         	{!appConfigData.loaded && <SearchAppConfigComponent />}
-
+			
 			{appConfigData.loaded && ( resourceTypeList.Patient === undefined || resourceTypeList.selected === undefined ) && <PatientListComponent />}
 
 			{resourceTypeList.selected && <PatientDetailsComponent />}
